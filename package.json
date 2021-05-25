@@ -4,16 +4,23 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build-workers": "yarn exec tsc ./jobs/*.ts",
+    "build": "next build && yarn run build-workers",
     "start": "next start -p $PORT"
   },
   "dependencies": {
+    "@prisma/client": "2.23.0",
+    "bullmq": "^1.28.0",
+    "ioredis": "^4.27.3",
     "next": "10.2.3",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "throng": "^5.0.0"
   },
   "devDependencies": {
     "@types/react": "17.0.6",
+    "@types/throng": "^5.0.0",
+    "prisma": "2.23.0",
     "typescript": "4.2.4"
   },
   "engines": {

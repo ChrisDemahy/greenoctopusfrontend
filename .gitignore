@@ -30,5 +30,8 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 
+# Local .env file required for prisma
+.env
+
 # vercel
 .vercel

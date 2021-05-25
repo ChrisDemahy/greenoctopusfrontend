@@ -1,8 +1,26 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import { Queue } from "bullmq";
+import { GetServerSideProps } from "next";
+import Head from "next/head";
+import Image from "next/image";
+import styles from "../styles/Home.module.css";
 
-export default function Home() {
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const queueName = process.env.QUE_NAME || "webjobque";
+  const myQueue = new Queue(queueName);
+  const testJob = await myQueue.add("TestJob", {
+    url: "http://github.com/chrisdemahy",
+  });
+  return {
+    props: {
+      job: JSON.stringify(testJob),
+    },
+  };
+};
+
+interface Props {
+  job: any;
+}
+export default function Home(props: Props) {
   return (
     <div className={styles.container}>
       <Head>
@@ -17,7 +35,7 @@ export default function Home() {
         </h1>
 
         <p className={styles.description}>
-          Get started by editing{' '}
+          {`here ya go ${props.job}`}
           <code className={styles.code}>pages/index.js</code>
         </p>
 
@@ -58,12 +76,12 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{' '}
+          Powered by{" "}
           <span className={styles.logo}>
             <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
           </span>
         </a>
       </footer>
     </div>
-  )
+  );
 }

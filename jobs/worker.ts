@@ -21,7 +21,7 @@ const queueName = process.env.QUE_NAME || "webjobque";
 
 function start() {
   // Connect to the named work queue
-
+  // Create worker
   const worker = new Worker(
     queueName,
     async (job: Job) => {

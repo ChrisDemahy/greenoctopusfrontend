@@ -16,6 +16,7 @@ const workers = process.env.WEB_CONCURRENCY || 2;
 // to be much lower.
 const maxJobsPerWorker = 50;
 
+// Get the queue name from environment or use default
 const queueName = process.env.QUE_NAME || "webjobque";
 
 function start() {

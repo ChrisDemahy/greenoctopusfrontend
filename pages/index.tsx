@@ -5,6 +5,7 @@ import Image from "next/image";
 import styles from "../styles/Home.module.css";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
+  // Get the queue name from environment or use default
   const queueName = process.env.QUE_NAME || "webjobque";
   const myQueue = new Queue(queueName);
   const testJob = await myQueue.add("TestJob", {

@@ -1,2 +1,2 @@
 worker: node ./jobs/worker.js
-web: yarn exec start
+web: yarn run start

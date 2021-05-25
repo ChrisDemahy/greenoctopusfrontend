@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build-workers": "yarn exec tsc ./jobs/*.ts",
-    "build": "next build && yarn run build-workers",
+    "build-workers": "yarn exec tsc ./jobs/*.ts --esModuleInterop true",
+    "build": " yarn run build-workers && next build",
     "start": "next start -p $PORT"
   },
   "dependencies": {
